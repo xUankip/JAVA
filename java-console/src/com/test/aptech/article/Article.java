@@ -1,8 +1,4 @@
-package com.test.aptech.blog;
-
-import javax.lang.model.element.NestingKind;
-import java.util.Date;
-import java.util.Scanner;
+package com.test.aptech.article;
 
 public class Article {
     private long id;

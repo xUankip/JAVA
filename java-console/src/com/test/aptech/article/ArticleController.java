@@ -1,7 +1,7 @@
-package com.test.aptech.blog;
+package com.test.aptech.article;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class ArticleController {
@@ -42,30 +42,50 @@ public class ArticleController {
         articles.add(article);
     }
     public void showListArticle() {
+        System.out.println("List of all Article");
+        System.out.println("___________________");
+        System.out.printf("%-10s  || %-20s || %-20s|| %-20s|| %-20s  || %-20s \n ", "ID", "Name", "Title", "Discus", "Avatar", "Time");
         for (int i = 0; i < articles.size(); i++) {
-            System.out.println("List of all Article");
-            System.out.println("___________________");
-            System.out.printf("%-10s || %-20s || %-20s || %-20s || %-20s || %-20s \n ", "ID", "Name", "Title", "Discus", "Avatar", "Time");
             Article article = articles.get(i);
-            System.out.printf("%-10s || %-20s || %-20s || %-20s || %-20s || %-20s ", article.getId(), article.getName(), article.getTitle(), article.getDiscus(), article.getAvatar(), article.getTime());
+            System.out.printf("%-10s || %-20s || %-20s || %-20s || %-20s || %-20s \n ", article.getId(), article.getName(), article.getTitle(), article.getDiscus(), article.getAvatar(), article.getTime());
         }
     }
     public void findById() {
         System.out.println("Type the Article ID");
-        long aID = scanner.nextLong();
+        long aid = scanner.nextLong();
         scanner.nextLine();
         long index = -1;
         for (int i = 0; i < articles.size(); i++) {
             Article articleId = articles.get(i);
-            if (articleId.getId() == aID){
-                index = aID;
+            if (articleId.getId() == aid){
+                index = aid;
                 System.out.printf("%-10s || %-20s || %-20s || %-20s || %-20s || %-20s \n ", "ID", "Name", "Title", "Discus", "Avatar", "Time");
                 System.out.printf("%-10s || %-20s || %-20s || %-20s || %-20s || %-20s ", articleId.getId(), articleId.getName(), articleId.getTitle(), articleId.getDiscus(), articleId.getAvatar(), articleId.getTime());
             }
         }
     }
     public void deleteById() {
+        System.out.println("Type the Article you want to Delete");
+        long deleteId = scanner.nextLong();
+        scanner.nextLine();
+        long index = -1;
+        for (int i = 0; i < articles.size(); i++) {
+            Article delete = articles.get(i);
+            if (delete.getId() == deleteId){
+                index = deleteId;
+                System.out.println("ID found");
+                System.out.println("Press Y for delete, Press anything to cancel");
+                String choice = scanner.nextLine();
+                if (!Objects.equals(choice, "y")){
+                    System.out.println("Not delete, Come back to menu");
+                } else {
+                    articles.remove(i);
+                    System.out.println("Delete success");
+                }
 
+            }else {
+                System.out.println("ID not found");
+            }
+        }
     }
-
 }
