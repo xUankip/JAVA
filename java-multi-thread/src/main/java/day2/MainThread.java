@@ -1,13 +1,12 @@
 package day2;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-import java.io.IOException;
-import static java.rmi.server.LogStream.log;
+import java.util.ArrayList;
+
 public class MainThread {
     public static void main(String[] args) {
-
+        VnExpressCrawler vnExpressCrawler = new VnExpressCrawler();
+        ArrayList<String> list = new ArrayList<>();
+        ArticleController articleController = new ArticleController();
+        vnExpressCrawler.getLinks("https://vnexpress.net");
     }
 }

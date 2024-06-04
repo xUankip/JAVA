@@ -2,31 +2,46 @@ package day2;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
-import javax.print.Doc;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class VnExpressCrawler implements MyCrawler{
+    Document doc = null;
     @Override
     public ArrayList<String> getLinks(String url) {
+        url = "https://vnexpress.net/khoa-hoc";
+        try {
+            doc = Jsoup.connect(url).get();
+            System.out.println(doc.text());
+            Elements newsHeadlines = doc.select("article.item-news h3.title-news a");
+            for (Element headLine : newsHeadlines){
+                System.out.printf("%s \n\t", headLine.absUrl("href"));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 
     @Override
     public Article getArticle(String url) {
-        Document doc = null;
         try {
-            doc = Jsoup.connect("https://dantri.com.vn/xa-hoi/bo-cong-an-trien-khai-phan-mem-quan-ly-tang-ni-phat-tu-20240603161703774.htm").get();
-            System.out.println((doc.title()));
-            System.out.println((doc.select("div.singular-wrap article.singular-container h1.title-page detail")));
-            System.out.println(doc.select("div.author-name b").text());
-            System.out.println(doc.select("time.author-time").text());
-            System.out.println(doc.select("figure.image img").attr("data-src"));
+            doc = Jsoup.connect(url).get();
+            String title = doc.select("h1.title-detail").text();
+            String description = doc.select("p.description").text();
+            String firstImageLink = doc.select("picture img[itemprop=contentUrl]").attr("data-src");
+            String authorName = doc.select("article.fck_detail p.Normal[style=text-align:right;]").text();
+            Article article = new Article();
+            article.setTitle(title);
+            article.setImgDescription(description);
+            article.setAuthor(authorName);
+            return article;
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return null;
     }
 }

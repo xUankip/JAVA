@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class MySqlRepositoryImp implements ArticleRepository{
     @Override
     public ArrayList<Article> findAll() {
+
         return null;
     }
 
