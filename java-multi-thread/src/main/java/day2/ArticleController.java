@@ -1,8 +1,12 @@
 package day2;
 
 public class ArticleController {
-    VnExpressCrawler vnExpressCrawler = new VnExpressCrawler();
+    MySqlRepositoryImp mySqlRepositoryImp = new MySqlRepositoryImp();
     public void findAll(){
-
+        mySqlRepositoryImp.findAll();
     }
+    public void findByUrl(){
+        mySqlRepositoryImp.findByUrl();
+    }
+
 }

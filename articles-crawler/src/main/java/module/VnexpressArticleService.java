@@ -1,14 +1,15 @@
-package day2;
+package module;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class VnExpressCrawler implements MyCrawler{
+public class VnexpressArticleService implements ArticleService{
     Document doc = null;
     @Override
     public ArrayList<String> getLinks(String url) {
@@ -34,13 +35,11 @@ public class VnExpressCrawler implements MyCrawler{
             doc = Jsoup.connect(url).get();
             String title = doc.select("h1.title-detail").text();
             String description = doc.select("p.description").text();
-            String firstImageLink = doc. select ("picture img[itemprop=contentUrl]").attr("data-src");
-            String authorName = doc.select("article.fck_detail p.Normal[style=text-align:right;]").text();
+            String content = doc.select("article.fck_detail p.Normal").text();
             Article article = new Article();
             article.setTitle(title);
             article.setContent(description);
-            article.setImgDescription(firstImageLink);
-            article.setAuthor(authorName);
+            article.setContent(content);
             return article;
 
         } catch (IOException e) {
