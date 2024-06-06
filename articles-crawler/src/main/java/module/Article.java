@@ -1,6 +1,6 @@
 package module;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Article {
     private int id;
@@ -9,9 +9,9 @@ public class Article {
     private String description;
     private String content;
     private String thumbnail;
-    private Date createdAt;
-    private Date updatedAt;
-    private Date deletedAt;
+    private LocalDate createdAt;
+    private LocalDate updatedAt;
+    private LocalDate deletedAt;
     private int status; //1. Active | 0. Pending | -1. Deleted
 
     public int getId() {
@@ -62,27 +62,27 @@ public class Article {
         this.thumbnail = thumbnail;
     }
 
-    public Date getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public LocalDate getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Date getDeletedAt() {
+    public LocalDate getDeletedAt() {
         return deletedAt;
     }
 
-    public void setDeletedAt(Date deletedAt) {
+    public void setDeletedAt(LocalDate deletedAt) {
         this.deletedAt = deletedAt;
     }
 

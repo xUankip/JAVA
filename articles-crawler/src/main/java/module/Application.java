@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
-    public void generateMenu(){
+    public static void main(String[] args) {
         //1. Crawl thông tin từ vnexpress.
         //2. Crawl thông tin từ nguồn của tôi.
         //3. Hiển thị danh sách tin hiện có.
