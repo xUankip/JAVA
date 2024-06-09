@@ -26,7 +26,7 @@ public class Application {
                     articlesController.getLinksFromVnExpress();
                     break;
                 case 2:
-
+                    articlesController.getLinksFromDanTri();
                     break;
                 case 3:
                     //find All

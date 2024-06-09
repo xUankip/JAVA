@@ -17,12 +17,6 @@ public class Article {
     public Article() {
     }
 
-    public Article(String title, String description, String content) {
-        this.title = title;
-        this.description = description;
-        this.content = content;
-    }
-
     public long getId() {
         return id;
     }

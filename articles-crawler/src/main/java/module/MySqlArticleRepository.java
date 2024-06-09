@@ -91,7 +91,7 @@ public class MySqlArticleRepository implements ArticleRepository {
     public Article save(Article article) {
         try {
             Connection connection = DriverManager.getConnection(MYSQL_CONNECTION_STRING, MYSQL_USERNAME, MYSQL_PASSWORD);
-            String strSql = "insert into articles (base_url, title, description, content, thumbnail, createdAt, status) values(?, ?, ?, ?, ?, ?, 1)";
+            String strSql = "insert into articles (base_url, title, description, content, thumbnail, createdAt, updated_at, deleted_at, status) values (?, ?, ?, ?, ?, ?, ?, ?, 1)";
             PreparedStatement preparedStatement = connection.prepareStatement(strSql);
             preparedStatement.setString(1, article.getBaseUrl());
             preparedStatement.setString(2, article.getTitle());
@@ -99,10 +99,12 @@ public class MySqlArticleRepository implements ArticleRepository {
             preparedStatement.setString(4, article.getContent());
             preparedStatement.setString(5, article.getThumbnail());
             preparedStatement.setString(6, article.getCreatedAt());
+            preparedStatement.setString(7, article.getUpdatedAt().toString());
+            preparedStatement.setString(8, article.getDeletedAt().toString());
             preparedStatement.executeUpdate();
             connection.close();
         } catch (SQLException e) {
-            System.out.println("Error");
+            e.printStackTrace();
         }
         return article;
     }
