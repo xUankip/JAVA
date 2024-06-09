@@ -2,7 +2,6 @@ package module;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -17,9 +16,9 @@ public class VnexpressArticleService implements ArticleService{
         try {
             doc = Jsoup.connect(url).get();
             Elements elements = doc.getElementsByTag("a");
-            for (Element element : elements){
-                String href = element.attr("href");
-                if (href.contains("vnexpress") && href.contains(".html")){
+            for (int i = 0; i < elements.size(); i++) {
+                String href = elements.get(i).attr("href");
+                if (href.contains("https://vnexpress") && href.contains("html")){
                     links.add(href);
                 }
             }
@@ -36,12 +35,15 @@ public class VnexpressArticleService implements ArticleService{
             String title = doc.select("h1.title-detail").text();
             String description = doc.select("p.description").text();
             String content = doc.select("article.fck_detail p.Normal").text();
-            Article article = new Article();
+            String thumbnail = doc.select("div.fig-picture  img[itemprop=contentUrl]").attr("data-src");
+            String createAt = doc.select("span.date ").text();
+            Article article = new Article(title, description, content);
             article.setTitle(title);
-            article.setContent(description);
+            article.setDescription(description);
             article.setContent(content);
+            article.setThumbnail(thumbnail);
+            article.setCreatedAt(createAt);
             return article;
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -3,22 +3,31 @@ package module;
 import java.time.LocalDate;
 
 public class Article {
-    private int id;
+    private long id;
     private String baseUrl;
     private String title;
     private String description;
     private String content;
     private String thumbnail;
-    private LocalDate createdAt;
+    private String createdAt;
     private LocalDate updatedAt;
     private LocalDate deletedAt;
     private int status; //1. Active | 0. Pending | -1. Deleted
 
-    public int getId() {
+    public Article() {
+    }
+
+    public Article(String title, String description, String content) {
+        this.title = title;
+        this.description = description;
+        this.content = content;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -62,11 +71,11 @@ public class Article {
         this.thumbnail = thumbnail;
     }
 
-    public LocalDate getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
 

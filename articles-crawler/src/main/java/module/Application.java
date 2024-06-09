@@ -1,6 +1,5 @@
 package module;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
@@ -9,7 +8,7 @@ public class Application {
         //2. Crawl thông tin từ nguồn của tôi.
         //3. Hiển thị danh sách tin hiện có.
         //4. Thoát chương trình.
-        ArticleService articleService = null;
+        ArticlesController articlesController = new ArticlesController();
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("Main Menu");
@@ -24,15 +23,10 @@ public class Application {
             scanner.nextLine();
             switch (choice) {
                 case 1:
-                    articleService = new VnexpressArticleService();
-                    ArrayList<String> links = articleService.getLinks("https://vnexpress.net/khoa-hoc");
-                    for (int i = 0; i < links.size(); i++) {
-                        Article article = articleService.getArticle(links.get(i));
-                        System.out.printf("%d - %s\n", i + 1, article.getTitle());
-                    }
+                    articlesController.getLinksFromVnExpress();
                     break;
                 case 2:
-                    articleService = new DanTriArticleService();
+
                     break;
                 case 3:
                     //find All
