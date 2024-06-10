@@ -19,12 +19,12 @@ public class VnexpressArticleService implements ArticleService{
             Elements elements = doc.getElementsByTag("a");
             for (int i = 0; i < elements.size(); i++) {
                 String href = elements.get(i).attr("href");
-                if (href.contains("https://vnexpress") && href.contains(".html")){
+                if (href.contains("vnexpress") && href.contains(".html")){
                     links.add(href);
                 }
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
         return new ArrayList<>(links);
     }

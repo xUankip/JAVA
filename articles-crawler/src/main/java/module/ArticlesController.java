@@ -14,7 +14,7 @@ public class ArticlesController {
 
         MySqlArticleRepository mySqlArticleRepository = new MySqlArticleRepository();
         ArticleService articleService = new VnexpressArticleService();
-        ArrayList<String> linksList = articleService.getLinks("https://vnexpress.net/khoa-hoc");
+        ArrayList<String> linksList = articleService.getLinks("https://dantri.com.vn/");
         for (int i = 0; i < linksList.size(); i++) {
             Article article = articleService.getArticle(linksList.get(i));
             System.out.printf("%d .%s\n", i + 1, article.getTitle());
@@ -25,7 +25,7 @@ public class ArticlesController {
     public void getLinksFromDanTri() {
         MySqlArticleRepository mySqlArticleRepository = new MySqlArticleRepository();
         ArticleService articleService = new DanTriArticleService();
-        ArrayList<String> linksList = articleService.getLinks("https://dantri.com.vn/o-to-xe-may.htm");
+        ArrayList<String> linksList = articleService.getLinks("https://tienphong.vn/kinh-te/");
         for (int i = 0; i < linksList.size(); i++) {
             Article article = articleService.getArticle(linksList.get(i));
             System.out.printf("%d .%s\n", i + 1, article.getTitle());
