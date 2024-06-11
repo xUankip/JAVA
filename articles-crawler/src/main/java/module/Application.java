@@ -23,13 +23,13 @@ public class Application {
             scanner.nextLine();
             switch (choice) {
                 case 1:
-                    articlesController.getLinksFromVnExpress();
+                    articlesController.getLinksFromTienPhong();
                     break;
                 case 2:
                     articlesController.getLinksFromDanTri();
                     break;
                 case 3:
-                    //find All
+                    articlesController.findAll();
                     break;
                 case 4:
                     System.out.println("Closing Program");

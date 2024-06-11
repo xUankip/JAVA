@@ -27,7 +27,7 @@ public class MySqlArticleRepository implements ArticleRepository {
                 String content = resultSet.getString("content");
                 String thumbnail = resultSet.getString("thumbnail");
                 String createdAt = resultSet.getString("createdAt");
-                String updateAt = resultSet.getString("update_at");
+                String updateAt = resultSet.getString("updated_at");
                 String deleteAt = resultSet.getString("deleted_at");
                 int status = resultSet.getInt("status");
                 Article article = new Article();
@@ -65,7 +65,7 @@ public class MySqlArticleRepository implements ArticleRepository {
                 String content = resultSet.getString("content");
                 String thumbnail = resultSet.getString("thumbnail");
                 String createdAt = resultSet.getString("createdAt");
-                String updateAt = resultSet.getString("update_at");
+                String updateAt = resultSet.getString("updated_at");
                 String deleteAt = resultSet.getString("deleted_at");
                 int status = resultSet.getInt("status");
                 Article article = new Article();
@@ -91,7 +91,7 @@ public class MySqlArticleRepository implements ArticleRepository {
     public Article save(Article article) {
         try {
             Connection connection = DriverManager.getConnection(MYSQL_CONNECTION_STRING, MYSQL_USERNAME, MYSQL_PASSWORD);
-            String strSql = "insert into articles (base_url, title, description, content, thumbnail, createdAt, updated_at, deleted_at, status) values (?, ?, ?, ?, ?, ?, ?, ?, 1)";
+            String strSql = "insert into articles (base_url, title, description, content, thumbnail, createdAt, status) values (?, ?, ?, ?, ?, ?, 1)";
             PreparedStatement preparedStatement = connection.prepareStatement(strSql);
             preparedStatement.setString(1, article.getBaseUrl());
             preparedStatement.setString(2, article.getTitle());
@@ -99,8 +99,6 @@ public class MySqlArticleRepository implements ArticleRepository {
             preparedStatement.setString(4, article.getContent());
             preparedStatement.setString(5, article.getThumbnail());
             preparedStatement.setString(6, article.getCreatedAt());
-            preparedStatement.setString(7, article.getUpdatedAt().toString());
-            preparedStatement.setString(8, article.getDeletedAt().toString());
             preparedStatement.executeUpdate();
             connection.close();
         } catch (SQLException e) {
@@ -113,7 +111,7 @@ public class MySqlArticleRepository implements ArticleRepository {
     public Article update(Article article) {
         try {
             Connection connection = DriverManager.getConnection(MYSQL_CONNECTION_STRING, MYSQL_USERNAME, MYSQL_PASSWORD);
-            String strSql = "update articles set title = ?, description = ?, content = ?, thumbnail = ?, createAt = ?, update_at = ? where url = ?";
+            String strSql = "update articles set title = ?, description = ?, content = ?, thumbnail = ?, createAt = ?, updated_at = ? where url = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(strSql);
             preparedStatement.setString(1, article.getBaseUrl());
             preparedStatement.setString(2, article.getDescription());
@@ -136,7 +134,7 @@ public class MySqlArticleRepository implements ArticleRepository {
         try {
             Connection connection = DriverManager.getConnection(MYSQL_CONNECTION_STRING, MYSQL_USERNAME, MYSQL_PASSWORD);
             Article article = new Article();
-            String prSql = "update articles set status = -1, delete_at = ? where url = ?";
+            String prSql = "update articles set status = -1, deleted_at = ? where url = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(prSql);
             preparedStatement.setString(1, article.getDeletedAt().toString());
             preparedStatement.setString(2, article.getBaseUrl());

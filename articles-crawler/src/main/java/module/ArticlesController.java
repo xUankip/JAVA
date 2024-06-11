@@ -3,18 +3,10 @@ package module;
 import java.util.ArrayList;
 
 public class ArticlesController {
-    public void getLinksFromVnExpress() {
-//        MySqlArticleRepository mySqlArticleRepository = new MySqlArticleRepository();
-//        ArrayList<String> getLinks = articleService.getLinks(url);
-//        for (int i = 0; i < getLinks.size(); i++) {
-//            Article article = articleService.getArticle(getLinks.get(i));
-//            System.out.printf("%d. %s\n", i + 1, article.getTitle());
-//            mySqlArticleRepository.save(article);
-//        }
-
+    public void getLinksFromTienPhong() {
         MySqlArticleRepository mySqlArticleRepository = new MySqlArticleRepository();
-        ArticleService articleService = new VnexpressArticleService();
-        ArrayList<String> linksList = articleService.getLinks("https://dantri.com.vn/");
+        ArticleService articleService = new TienPhongArticleService();
+        ArrayList<String> linksList = articleService.getLinks("https://tienphong.vn/the-thao/");
         for (int i = 0; i < linksList.size(); i++) {
             Article article = articleService.getArticle(linksList.get(i));
             System.out.printf("%d .%s\n", i + 1, article.getTitle());
@@ -25,11 +17,18 @@ public class ArticlesController {
     public void getLinksFromDanTri() {
         MySqlArticleRepository mySqlArticleRepository = new MySqlArticleRepository();
         ArticleService articleService = new DanTriArticleService();
-        ArrayList<String> linksList = articleService.getLinks("https://tienphong.vn/kinh-te/");
+        ArrayList<String> linksList = articleService.getLinks("https://dantri.com.vn/suc-khoe.htm");
         for (int i = 0; i < linksList.size(); i++) {
             Article article = articleService.getArticle(linksList.get(i));
             System.out.printf("%d .%s\n", i + 1, article.getTitle());
             mySqlArticleRepository.save(article);
+        }
+    }
+    public void findAll(){
+        MySqlArticleRepository mySqlArticleRepository = new MySqlArticleRepository();
+        ArrayList<Article> articleList = mySqlArticleRepository.findAll();
+        for (Article article : articleList){
+            System.out.println("Title " + article.getTitle());
         }
     }
 }
