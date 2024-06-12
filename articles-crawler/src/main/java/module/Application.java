@@ -13,7 +13,7 @@ public class Application {
         while (true) {
             System.out.println("Main Menu");
             System.out.println("_____________________________________");
-            System.out.println("1.VnExpress Crawler");
+            System.out.println("1.TienPhong Crawler");
             System.out.println("2.DanTri Crawler");
             System.out.println("3.Articles List");
             System.out.println("4.Exit");

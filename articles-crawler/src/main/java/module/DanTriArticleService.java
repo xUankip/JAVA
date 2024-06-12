@@ -18,7 +18,7 @@ public class DanTriArticleService implements ArticleService{
             Elements elements = doc.getElementsByTag("a");
             for (int i = 0; i < elements.size(); i++) {
                 String href = elements.get(i).attr("href");
-                if (href.contains(".html")){
+                if (href.contains("https://dantri.com.vn") && href.contains(".html")){
                     links.add(href);
                 }
             }
@@ -31,19 +31,18 @@ public class DanTriArticleService implements ArticleService{
     public Article getArticle(String url) {
         try {
             doc = Jsoup.connect(url).get();
-            String title = doc.select("article.singular-container h1").text();
-            String description = doc.select("article.singular-container h2").text();
-            String thumbnail = doc.select("figure.image img[alt]").text();
+            String title = doc.select("article.singular-container h1.title-page").text();
+            String description = doc.select("article.singular-container h2.singular-sapo").text();
             String content = doc.select("div.singular-content p").text();
-            String createAt = doc.select("time").text();
+            String thumbnail = doc.select("figure.image img[alt]").text();
+            String createAt = doc.select("time.author-time").text();
             Article article = new Article();
             article.setBaseUrl(url);
             article.setTitle(title);
             article.setDescription(description);
-            article.setThumbnail(thumbnail);
             article.setContent(content);
+            article.setThumbnail(thumbnail);
             article.setCreatedAt(createAt);
-            article.setStatus(1);
             return article;
         } catch (Exception e) {
             System.out.println("Error");

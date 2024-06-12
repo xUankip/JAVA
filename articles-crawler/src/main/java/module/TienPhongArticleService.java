@@ -44,9 +44,6 @@ public class TienPhongArticleService implements ArticleService{
             article.setContent(content);
             article.setThumbnail(thumbnail);
             article.setCreatedAt(createAt);
-//            article.setUpdatedAt(LocalDate.now());
-//            article.setDeletedAt(LocalDate.now());
-//            article.setStatus(1);
             return article;
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -28,7 +28,7 @@ public class ArticlesController {
         MySqlArticleRepository mySqlArticleRepository = new MySqlArticleRepository();
         ArrayList<Article> articleList = mySqlArticleRepository.findAll();
         for (Article article : articleList){
-            System.out.println("Title " + article.getTitle());
+            System.out.println("Title" + article.getTitle());
         }
     }
 }
