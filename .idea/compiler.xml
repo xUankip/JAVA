@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="java-multi-thread" />
         <module name="articles-crawler" />
+        <module name="AddressBooks" />
       </profile>
     </annotationProcessing>
   </component>
